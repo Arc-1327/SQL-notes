@@ -84,12 +84,7 @@
   - Filters the rows based on conditions.
   - Comparison operators: =, <>, !=, <, <=, >, >=
   - Conditions can be TRUE, FALSE, NULL
-  - Example:
-    - SELECT name, year, rankscore
-      FROM movies 
-      WHERE rankscore > 9 
-      ORDER BY rankscore DESC 
-      LIMIT 10;
+  - Example: SELECT name, year, rankscore FROM movies WHERE rankscore > 9 ORDER BY rankscore DESC LIMIT 10;
   - NULL: values that do not exist/unknown/missing
   - Examples:
     - SELECT name, year, rankscore FROM movies WHERE rankscore IS NULL;
@@ -125,11 +120,7 @@
   - Groups data based on one or more columns.
   - Often used with Aggregate functions(COUNT, MIN, MAX, or SUM).
   - All null values are grouped together if grouping columns contain NULL values.
-  - Example:
-    - SELECT year, COUNT(year) AS year_count
-      FROM movies
-      GROUP BY year
-      ORDER BY year_count DESC;
+  - Example: SELECT year, COUNT(year) AS year_count FROM movies GROUP BY year ORDER BY year_count DESC;
 
 <br>
 
@@ -145,57 +136,53 @@
     - H: HAVING
     - O: ORDER BY (ASC and DESC)
     - L: LIMIT (has OFFSET)
-  - Example:
-    - SELECT year, COUNT(year) AS year_count
-      FROM movies
-      WHERE rankscore > 9
-      GROUP BY year
-      HAVING year_count > 20
-      ORDER BY year_count DESC
-      LIMIT 10;
+  - Example: SELECT year, COUNT(year) AS year_count FROM movies WHERE rankscore > 9 GROUP BY year HAVING year_count > 20 ORDER BY year_count DESC LIMIT 10;
 
 <br>
 
-## Joins: Combines data from multiple tables
-* INNER JOIN: matches the rows in both tables
+## JOINS
+* Combines data from multiple tables.
+* INNER JOIN:
+  - Matches the rows in both tables.
   - SELECT A.ID, A.name, B.course
     FROM TableA A
     INNER JOIN TableB B
     ON A.ID = B.ID;
       
-* LEFT JOIN: returns all rows from the left table and matching rows from the right table.
+* LEFT JOIN:
+  - Returns all rows from the left table and matching rows from the right table.
   - SELECT A.ID, A.name, B.course
     FROM TableA A
     LEFT JOIN TableB B
     ON A.ID = B.ID;
       
-* RIGHT JOIN: returns all rows from the right table and matching rows from the left table.
+* RIGHT JOIN:
+  - Returns all rows from the right table and matching rows from the left table.
   - SELECT A.ID, A.name, B.course
     FROM TableA A
     RIGHT JOIN TableB B
     ON A.ID = B.ID;
 
-* FULL OUTER JOIN: returns all rows when there is a match in either table.
+* FULL OUTER JOIN:
+  - Returns all rows when there is a match in either table.
   - SELECT A.ID, A.name, B.course
     FROM TableA A
     FULL OUTER JOIN TableB B
     ON A.ID = B.ID;
 
-* NATURAL JOIN: joins tables using all columns with the same name
+* NATURAL JOIN:
+  - Joins tables using all columns with the same name.
   - SELECT *
     FROM TableA
     NATURAL JOIN TableB;
 
 <br>
 
-## Sub Queries: Nested Queries or Inner Queries
+## Sub Queries 
+* Nested Queries or Inner Queries
 * Queries within queries.
 * First, the inner query is executed and then the outer query is executed.
-* Example:
-  - SELECT actor_id FROM roles
-    WHERE movie_id IN
-    (SELECT id FROM movies
-    WHERE name = 'Schindler''s List');
+* Example: SELECT actor_id FROM roles WHERE movie_id IN (SELECT id FROM movies WHERE name = 'Schindler''s List');
 * Comparison operators: IN, NOT IN, EXISTS, NOT EXISTS, ANY, ALL.
 * ANY operator returns TRUE if any of the subquery values meet the condition.
 * ALL operator returns TRUE if all of the subquery values meet the condition.
@@ -205,34 +192,41 @@
 
 ## CRUD Operations:
 * CREATE, READ, UPDATE, DELETE (CRUD).
-* CREATE: to create tables
+* CREATE:
+  - To create tables.
   - CREATE TABLE students
     (id INT PRIMARY KEY,
     name VARCHAR(50),
     age INT,
     grade CHAR(1));
-* INSERT: to add rows to a table
+* INSERT:
+  - To add rows to a table
   - INSERT INTO students (id, name, age, grade)
     VALUES (1, 'John Doe', 20, 'A'),
     (2, 'Jane Smith', 22, 'B');
 * READ: query data using SELECT.
-* UPDATE: to modify existing rows
+* UPDATE:
+  - To modify existing rows
   - UPDATE students
     SET grade = 'A+'
     WHERE id = 2;
-* DELETE: to remove rows
+* DELETE:
+  - To remove rows
   - DELETE FROM students WHERE id = 1;
 
 <br>
 
-* ALTER: to modify table structure
+* ALTER:
+  - To modify table structure
   - ADD a new column:
     - ALTER TABLE students ADD email VARCHAR(100);
   - Rename a column:
     - ALTER TABLE students RENAME COLUMN grade TO final_grade;
-* DROP: Deletes the table and its data permanently
+* DROP:
+  - Deletes the table and its data permanently
   - DROP TABLE students;
-* TRUNCATE: Deletes all data but keeps the table structure.
+* TRUNCATE:
+  - Deletes all data but keeps the table structure.
   - TRUNCATE TABLE students;
 
 
